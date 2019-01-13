@@ -1,5 +1,5 @@
 # Crop yield Prediction with Deep Learning
-The necessary code for our paper, [Deep Gaussian Process for Crop Yield Prediction Based on Remote Sensing Data](http://jiaxuanyou.me/files/Jiaxuan_AAAI17.pdf), AAAI 2017 (Best Student Paper Award in Computational Sustainability Track). We are glad to win the "Best Big Data Solution" in [World Bank Big Data Innovation Chanllenge](http://bigdatainnovationchallenge.org/) as well. 
+The necessary code for our paper, [Deep Gaussian Process for Crop Yield Prediction Based on Remote Sensing Data](hhttps://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14435), AAAI 2017 (Best Student Paper Award in Computational Sustainability Track). We are glad to win the "Best Big Data Solution" in [World Bank Big Data Innovation Chanllenge](http://bigdatainnovationchallenge.org/) as well. 
 
 Here is a brief introduction on the utilities for each folder.
 
