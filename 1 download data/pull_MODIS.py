@@ -26,7 +26,7 @@ def export_oneimage(img,folder,name,region,scale,crs):
 
 
 
-
+# NB: file = '2 clean data/locations_final.csv'
 locations = pd.read_csv('locations.csv')
 
 
