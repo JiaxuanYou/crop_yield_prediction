@@ -1,5 +1,5 @@
 # Crop yield Prediction with Deep Learning
-The necessary code for our paper, [Deep Gaussian Process for Crop Yield Prediction Based on Remote Sensing Data](http://jiaxuanyou.me/files/Jiaxuan_AAAI17.pdf), AAAI 2017 (Best Student Paper Award in Computational Sustainability Track). We are glad to win the "Best Big Data Solution" in [World Bank Big Data Innovation Chanllenge](http://bigdatainnovationchallenge.org/) as well. 
+The necessary code for our paper, [Deep Gaussian Process for Crop Yield Prediction Based on Remote Sensing Data](http://jiaxuanyou.me/files/Jiaxuan_AAAI17.pdf), AAAI 2017 (Best Student Paper Award in Computational Sustainability Track). We are glad to win the "Best Big Data Solution" in [World Bank Big Data Innovation Chanllenge](http://bigdatainnovationchallenge.org/) as well.
 
 Here is a brief introduction on the utilities for each folder.
 
@@ -13,3 +13,14 @@ Here is a brief introduction on the utilities for each folder.
 For more information, please contact Jiaxuan You.
 
 youjiaxuan@gmail.com.
+
+# Notes to myself (tommy)
+
+If want to run using python3 you want to install the environment from requirements_3.txt.
+
+Otherwise install the environment from requirements.txt.
+
+### Do we have to specify our own EE login details?
+### Do we need lots of space on our own Google drive?
+### How do we pull from the EE - Google Drive - Local machines?
+

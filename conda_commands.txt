@@ -1,11 +1,11 @@
 conda_commands.txt
 ------------------
 
+
+conda install python=2.7
 conda install pip
 
-conda install python=3.6.0
-
-conda install scipy scikit-learn
+conda install scipy scikit-learn xarray
 # also installs numpy pandas matplotlib
 conda install xarray
 
@@ -17,8 +17,13 @@ conda install -c conda-forge gdal
 
 pip install earthengine-api
 pip install beautifulsoup4
-python -m pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.3.0-py3-none-any.whl
+pip install tensorflow
+pip install joblib
 pip install oauth2client
+
+
+# FOR PYTHON 3.7 (i didn't realise the repo was in python2)
+python -m pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.3.0-py3-none-any.whl
 
 Imports to check:
 -----------------

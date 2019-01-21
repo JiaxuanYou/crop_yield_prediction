@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 # from GP_crop_v3 import *
 from sklearn import linear_model
 from sklearn import ensemble
- 
+
 def yield_map(path_load,path_save,predict_year,flag):
     # Read CNN_err prediction
     CNN = {}
@@ -59,7 +59,7 @@ def yield_map(path_load,path_save,predict_year,flag):
     # County style
     path_style = 'font-size:12px;fill-rule:nonzero;stroke:#FFFFFF;stroke-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:butt;marker-start:none;stroke-linejoin:bevel;fill:'
     # Color the counties based on unemployment rate
-    for p in paths:    
+    for p in paths:
         if p['id'] not in ["State_Lines", "separator"]:
             try:
                 rate = CNN[p['id']]
@@ -78,7 +78,7 @@ def yield_map(path_load,path_save,predict_year,flag):
             # elif rate > -5:
             #     color_class = 3
             # elif rate > -10:
-            #     color_class = 2            
+            #     color_class = 2
             # elif rate > -15:
             #     color_class = 1
             # else:
@@ -96,7 +96,7 @@ def yield_map(path_load,path_save,predict_year,flag):
             # elif rate > 40:
             #     color_class = 4
             # elif rate > 35:
-            #     color_class = 5            
+            #     color_class = 5
             # elif rate > 30:
             #     color_class = 6
             # elif rate > 25:
@@ -120,7 +120,7 @@ def yield_map(path_load,path_save,predict_year,flag):
             elif rate > 120:
                 color_class = 4
             elif rate > 100:
-                color_class = 5            
+                color_class = 5
             elif rate > 80:
                 color_class = 6
             elif rate > 60:
@@ -134,7 +134,7 @@ def yield_map(path_load,path_save,predict_year,flag):
 
             color = colors[color_class]
             p['style'] = path_style + color
-     
+
     soup=soup.prettify()
     with open(path_save, 'wb') as f:
         f.write(soup)
@@ -147,7 +147,7 @@ def yield_map_raw(real,index,path_save,predict_year):
 
     print 'CNN',err_CNN.min(),err_CNN.max()
 
-    
+
 
 
     for i in range(real.shape[0]):
@@ -178,7 +178,7 @@ def yield_map_raw(real,index,path_save,predict_year):
     # County style
     path_style = 'font-size:12px;fill-rule:nonzero;stroke:#FFFFFF;stroke-opacity:1;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:butt;marker-start:none;stroke-linejoin:bevel;fill:'
     # Color the counties based on unemployment rate
-    for p in paths:    
+    for p in paths:
         if p['id'] not in ["State_Lines", "separator"]:
             try:
                 rate = CNN[p['id']]
@@ -197,7 +197,7 @@ def yield_map_raw(real,index,path_save,predict_year):
             # elif rate > -5:
             #     color_class = 3
             # elif rate > -10:
-            #     color_class = 2            
+            #     color_class = 2
             # elif rate > -15:
             #     color_class = 1
             # else:
@@ -215,7 +215,7 @@ def yield_map_raw(real,index,path_save,predict_year):
             elif rate > 40:
                 color_class = 4
             elif rate > 35:
-                color_class = 5            
+                color_class = 5
             elif rate > 30:
                 color_class = 6
             elif rate > 25:
@@ -229,7 +229,7 @@ def yield_map_raw(real,index,path_save,predict_year):
 
             color = colors[color_class]
             p['style'] = path_style + color
-     
+
     soup=soup.prettify()
     with open(path_save, 'wb') as f:
         f.write(soup)
@@ -277,7 +277,7 @@ if __name__ == "__main__":
     #     image_NDVI[:,i] = (image_all[:,1+9*i]-image_all[:,9*i])/(image_all[:,1+9*i]+image_all[:,9*i])
 
 
-    
+
 
     for predict_year in range(2009,2014):
         # validate = np.nonzero(year_all == predict_year)[0]
