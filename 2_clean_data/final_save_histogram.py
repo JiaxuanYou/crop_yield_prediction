@@ -68,7 +68,7 @@ class fetch_data():
         # traverse training data
         image_mean = np.zeros([32, 32, 9], dtype=np.float32)
 
-        print 'traversing training data to calc image_mean:'
+        print('traversing training data to calc image_mean:')
         n = 0
         for i in self.index_train:
             year = str(int(self.data_yield[i, 0]))
@@ -94,7 +94,7 @@ class fetch_data():
             # print ratio
             # print np.mean(image_mean)
             if n % 1000 == 0:
-                print n
+                print(n)
         # print image_mean
         image_mean = image_mean.astype(dtype='float32', copy=False)
         np.save('image_mean_48by48.npy', image_mean)
@@ -124,7 +124,7 @@ class fetch_data():
             # if density.sum()==0:
             #     continue
             hist[:, i / bands, i % bands] = density / float(density.sum())
-        print image_temp.shape[2]
+        print(image_temp.shape[2])
         return hist
 
     def calc_histogram_flat(self,image_temp,bin_seq,bins,times,bands):
@@ -187,8 +187,8 @@ class fetch_data():
             image_temp = self.calc_histogram(image_temp,bin_seq,32,32,9)
             image_temp[np.isnan(image_temp)] = 0
             if np.sum(image_temp) < 250:
-                print 'broken image',filename
-                print np.isnan(image_temp)
+                print('broken image',filename)
+                print(np.isnan(image_temp))
 
             # output_image[n, :] = image_temp - self.image_mean
             output_image[n,:] = image_temp
@@ -290,7 +290,7 @@ class fetch_data():
                     np.savez(self.dir+'histogram_semi_rand_200_20000'+str(epoch)+'.npz',
                          output_image=output_image,output_yield=output_yield,
                          output_year=output_year,output_locations=output_locations,output_index=output_index)
-                    print 'save',self.dir+'histogram_semi_rand_200_20000'+str(epoch)+'.npz'
+                    print('save',self.dir+'histogram_semi_rand_200_20000'+str(epoch)+'.npz')
                     # clear
                     output_image = np.zeros([count_max, 32, 32, 9])
                     output_yield = np.zeros([count_max])
@@ -304,9 +304,9 @@ class fetch_data():
                 output_locations[count-epoch*count_max, 0] = longitude
                 output_locations[count-epoch*count_max, 1] = latitude
                 output_index[count-epoch*count_max,:] = np.array([int(loc1),int(loc2)])
-                print epoch,i,j,count,np.sum(image_temp_part),year,loc1,loc2
+                print(epoch,i,j,count,np.sum(image_temp_part),year,loc1,loc2)
                 count += 1
-        print 'save done'
+        print('save done')
 
     # save mean data
     def save_data_mean(self):
@@ -340,11 +340,11 @@ class fetch_data():
             output_locations[i, 1] = latitude
             output_index[i,:] = np.array([int(loc1),int(loc2)])
             # print image_temp.shape
-            print i,np.sum(image_temp),year,loc1,loc2
+            print(i,np.sum(image_temp),year,loc1,loc2)
         np.savez(self.dir+'histogram_all_mean.npz',
                  output_image=output_image,output_yield=output_yield,
                  output_year=output_year,output_locations=output_locations,output_index=output_index)
-        print 'save done'
+        print('save done')
 
 if __name__ == '__main__':
 

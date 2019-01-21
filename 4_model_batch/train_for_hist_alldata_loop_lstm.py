@@ -56,8 +56,8 @@ if __name__ == "__main__":
             # random choose validation set
             index_train = np.nonzero(year_all < predict_year)[0]
             index_validate = np.nonzero(year_all == predict_year)[0]
-            print 'train size',index_train.shape[0]
-            print 'validate size',index_validate.shape[0]
+            print('train size',index_train.shape[0])
+            print('validate size',index_validate.shape[0])
             logging.info('train size %d',index_train.shape[0])
             logging.info('validate size',index_validate.shape[0])
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
                                 model.keep_prob: 1
                             })
 
-                            print str(loop)+str(time)+'predict year'+str(predict_year)+'step'+str(i),train_loss,val_loss,config.lr
+                            print(str(loop)+str(time)+'predict year'+str(predict_year)+'step'+str(i),train_loss,val_loss,config.lr)
                             logging.info('%d %d %d step %d %f %f %f',loop,time,predict_year,i,train_loss,val_loss,config.lr)
                         if i%500 == 0:
                             # do validation
@@ -137,7 +137,7 @@ if __name__ == "__main__":
                                 RMSE_min=RMSE
                                
 
-                            print 'Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min
+                            print('Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min)
                             logging.info('Validation set RMSE %f ME %f RMSE_min %f',RMSE,ME,RMSE_min)
                         
                             summary_train_loss.append(train_loss)
@@ -146,7 +146,7 @@ if __name__ == "__main__":
                             summary_ME.append(ME)
                     # save
                     save_path = saver.save(sess, config.save_path+str(loop)+str(time) + str(predict_year)+'CNN_model.ckpt')
-                    print('save in file: %s' % save_path)
+                    print(('save in file: %s' % save_path))
                     logging.info('save in file: %s' % save_path)
 
                     # save result

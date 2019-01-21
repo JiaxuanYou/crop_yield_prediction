@@ -10,9 +10,9 @@ pred = data['pred_out']
 locations = data['locations_out']
 
 err = pred-real
-print err.shape,year.shape,locations.shape
+print(err.shape,year.shape,locations.shape)
 
 result = np.concatenate((year[:,np.newaxis], locations, err[:,np.newaxis]),axis=1)
 
 io.savemat('variogram_data.mat', {'result':result})
-print 'saved'
+print('saved')

@@ -3,7 +3,7 @@ import time
 import sys
 import itertools
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import math
 import time
 import threading

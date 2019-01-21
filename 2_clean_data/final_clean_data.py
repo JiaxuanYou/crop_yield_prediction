@@ -33,7 +33,7 @@ def check_data_integrity_del():
         loc2 = data[i,2]
         filename = str(int(year)) + '_' + str(int(loc1)) + '_' + str(int(loc2)) + '.npy'
         if os.path.isfile(dir + filename)==False:
-            print 'del'
+            print('del')
             list_del.append(i)
 
     list_del = np.array(list_del)
@@ -41,7 +41,7 @@ def check_data_integrity_del():
     np.savetxt("yield_final_highquality.csv", data_clean, delimiter=",")
 
 def check_data_integrity():
-    print 'begin'
+    print('begin')
     data = np.genfromtxt('yield_final_highquality.csv', delimiter=',')
     # check if they have related files
     dir = "/atlas/u/jiaxuan/data/google_drive/img_output/"
@@ -51,8 +51,8 @@ def check_data_integrity():
         loc2 = data[i,2]
         filename = str(int(year)) + '_' + str(int(loc1)) + '_' + str(int(loc2)) + '.npy'
         if os.path.isfile(dir + filename)==False:
-            print filename
-    print 'end'
+            print(filename)
+    print('end')
 
 # def check_data_integrity():
 #     data = pd.read_csv('locations_final.csv',header=None)
@@ -147,7 +147,7 @@ def preprocess_save_data():
                 try:
                     MODIS_img = np.transpose(np.array(gdal.Open(MODIS_path).ReadAsArray(), dtype='uint16'),axes=(1,2,0))
                 except ValueError as msg:
-                    print msg
+                    print(msg)
                     continue
                 # read temperature
                 MODIS_temperature_img = np.transpose(np.array(gdal.Open(MODIS_temperature_path).ReadAsArray(), dtype='uint16'),axes=(1,2,0))
@@ -185,7 +185,7 @@ def preprocess_save_data():
                         # save as .npy
                         filename=img_output_dir+str(year)+'_'+str(loc1)+'_'+str(loc2)+'.npy'
                         np.save(filename,MODIS_list_masked[i])
-                        print filename,':written ',str(count)
+                        print(filename,':written ',str(count))
                         count+=1
 
 def preprocess_save_data_parallel(file):
@@ -222,7 +222,7 @@ def preprocess_save_data_parallel(file):
         try:
             MODIS_img = np.transpose(np.array(gdal.Open(MODIS_path).ReadAsArray(), dtype='uint16'),axes=(1,2,0))
         except ValueError as msg:
-            print msg
+            print(msg)
         # read temperature
         MODIS_temperature_img = np.transpose(np.array(gdal.Open(MODIS_temperature_path).ReadAsArray(), dtype='uint16'),axes=(1,2,0))
         # shift
@@ -274,7 +274,7 @@ def preprocess_save_data_parallel(file):
                 ## 1 save original file
                 filename=img_output_dir+str(year)+'_'+str(loc1)+'_'+str(loc2)+'.npy'
                 np.save(filename,MODIS_list_masked[i])
-                print filename,':written '
+                print(filename,':written ')
 
                 ## 2 save zoomed file (48*48)
                 zoom0 = float(48) / MODIS_list_masked[i].shape[0]
@@ -283,7 +283,7 @@ def preprocess_save_data_parallel(file):
 
                 filename=img_zoom_output_dir+str(year)+'_'+str(loc1)+'_'+str(loc2)+'.npy'
                 np.save(filename,output_image)
-                print filename,':written '
+                print(filename,':written ')
 
 
                 

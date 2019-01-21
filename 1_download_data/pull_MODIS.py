@@ -5,9 +5,10 @@ import numpy as np
 import pandas as pd
 import itertools
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 ee.Initialize()
+print(ee)
 
 def export_oneimage(img,folder,name,region,scale,crs):
   task = ee.batch.Export.image(img, name, {
@@ -19,10 +20,10 @@ def export_oneimage(img,folder,name,region,scale,crs):
   })
   task.start()
   while task.status()['state'] == 'RUNNING':
-    print 'Running...'
+    print('Running...')
     # Perhaps task.cancel() at some point.
     time.sleep(10)
-  print 'Done.', task.status()
+  print('Done.', task.status())
 
 
 
@@ -63,7 +64,7 @@ for loc1, loc2, lat, lon in locations.values:
         try:
             export_oneimage(img,'Data',fname,region,scale,crs)
         except:
-            print 'retry'
+            print('retry')
             time.sleep(10)
             continue
         break

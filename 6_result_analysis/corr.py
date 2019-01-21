@@ -19,7 +19,7 @@ def preprocess_save_data(file):
 
         # print( image_temp.shape)
         image_temp=image_temp[f,:]
-        print( image_temp.shape)
+        print(( image_temp.shape))
 
         corr = np.corrcoef(np.transpose(image_temp))
 

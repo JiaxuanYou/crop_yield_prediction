@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 permute_band = np.load('permute_band.npy')
 permute_band_plot_temp = permute_band[0:9]-permute_band[9]
-print permute_band_plot_temp.shape
+print(permute_band_plot_temp.shape)
 permute_band_plot = np.zeros([permute_band_plot_temp.shape[0],permute_band_plot_temp.shape[1],permute_band_plot_temp.shape[2],3])
 permute_band_plot[:,:,:,0] = (permute_band_plot_temp[:,:,:,0]+permute_band_plot_temp[:,:,:,1])/2
 permute_band_plot[:,:,:,1] = (permute_band_plot_temp[:,:,:,2]+permute_band_plot_temp[:,:,:,3])/2
@@ -87,7 +87,7 @@ plt.show()
 permute_time = np.load('permute_time.npy')
 permute_time_plot = permute_time[0:30]-permute_time[30]
 
-x = range(49,282,8)
+x = list(range(49,282,8))
 y = np.mean(permute_time_plot,axis=(1,2))
 # example error bar values that vary with x-position
 error = 0

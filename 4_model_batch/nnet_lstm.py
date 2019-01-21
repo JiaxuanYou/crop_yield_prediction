@@ -89,7 +89,7 @@ class NeuralModel():
         input_data = tf.transpose(self.x, [2,0,1,3])
         dim = input_data.get_shape().as_list()
         input_data = tf.reshape(input_data,[dim[0],-1,dim[2]*dim[3]])
-        print 'lstm input shape',input_data.get_shape()
+        print('lstm input shape',input_data.get_shape())
 
         with tf.variable_scope('LSTM') as scope:
             self.pred,self.loss,self.feature = lstm_net(input_data, self.y, config, keep_prob=self.keep_prob)

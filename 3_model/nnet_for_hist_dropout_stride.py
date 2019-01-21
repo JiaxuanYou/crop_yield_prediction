@@ -139,7 +139,7 @@ class NeuralModel():
         flattened = tf.reshape(conv3_3_d, [-1, dim])
         # flattened_d = tf.nn.dropout(flattened, 0.25)
 
-        print flattened.get_shape()
+        print(flattened.get_shape())
         self.fc6 = dense(flattened, 2048, name="fc6")
         # self.fc6 = tf.concat(1, [self.fc6_img,self.year])
 

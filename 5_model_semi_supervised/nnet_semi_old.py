@@ -349,8 +349,8 @@ if __name__ == '__main__':
                 })
             pred_all += pred
         pred_all /= 1
-        print 'step',i,'Lab',L,'\t','Class',C,'\t','Unlab',U,'\t','Reg',R,'\t','Total',loss
-        print 'pred',pred_all,'real',real,'lr',config.lr
+        print('step',i,'Lab',L,'\t','Class',C,'\t','Unlab',U,'\t','Reg',R,'\t','Total',loss)
+        print('pred',pred_all,'real',real,'lr',config.lr)
         # print y_mu_lab
         # print y
         # print y_mu_ulab-y

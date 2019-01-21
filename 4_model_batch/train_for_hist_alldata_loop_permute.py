@@ -168,7 +168,7 @@ if __name__ == "__main__":
                         feature_out=np.concatenate(feature_out)
 
                         rmse = np.sqrt(np.mean((pred_out-real_out)**2))
-                        print 'p',p
-                        print rmse
+                        print('p',p)
+                        print(rmse)
                         result_time[p,loop,predict_year-2009]=rmse
     np.save('permute_time.npy', result_time)

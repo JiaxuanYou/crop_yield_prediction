@@ -26,8 +26,8 @@ def Ridge(year,path):
     b = npzfile['b_out']
     W = np.concatenate((W,b))
 
-    print pred_out.shape,real_out.shape
-    print year_out.shape,locations_out.shape
+    print(pred_out.shape,real_out.shape)
+    print(year_out.shape,locations_out.shape)
     # plt.plot(year_out,pred_out-real_out,'.')
     # plt.show()
 
@@ -37,12 +37,12 @@ def Ridge(year,path):
     c1 = year_out==year_current
     # c2 = (index_out[:,0]==5)+(index_out[:,0]==17)+(index_out[:,0]==18)+(index_out[:,0]==19)+(index_out[:,0]==20)+(index_out[:,0]==27)+(index_out[:,0]==29)+(index_out[:,0]==31)+(index_out[:,0]==38)+(index_out[:,0]==39)+(index_out[:,0]==46)
     ind_test = np.where(c1)[0]
-    print 'shape of test set',ind_test.shape
+    print('shape of test set',ind_test.shape)
 
     c3 = year_out<year_current
     # c3 = year_out==year_current-1
     ind_train = np.where(c3)[0]
-    print 'shape of train set',ind_train.shape
+    print('shape of train set',ind_train.shape)
 
 
     '''4 normalize all features'''
@@ -78,12 +78,12 @@ def Ridge(year,path):
 
 
     '''baseline'''
-    print "The std deviation of test yield is", np.std(real_out[ind_test,])
-    print "Average yield is", np.mean(real_out[ind_test])
+    print("The std deviation of test yield is", np.std(real_out[ind_test,]))
+    print("Average yield is", np.mean(real_out[ind_test]))
 
     for alpha in np.linspace(-4, 2,num=5):
         '''Ridge regression'''
-        print alpha
+        print(alpha)
         lr = linear_model.Ridge(alpha =np.power(10,alpha))
         lr.fit(np.concatenate((feat_train,year_train),axis=1),Y_train)
         Y_pred_reg = lr.predict(np.concatenate((feat_test,year_test),axis=1))
@@ -92,22 +92,22 @@ def Ridge(year,path):
         # lr.fit(feat_train,Y_train)
         # Y_pred_reg = lr.predict(feat_test)
 
-        print lr.coef_.shape
-        print lr.coef_ 
-        print lr.intercept_
+        print(lr.coef_.shape)
+        print(lr.coef_) 
+        print(lr.intercept_)
 
-        print "The RMSE of ridge regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2))
-        print "Mean Error of ridge regression is",np.mean(Y_pred_reg-real_out[ind_test,])
-    print 0
+        print("The RMSE of ridge regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2)))
+        print("Mean Error of ridge regression is",np.mean(Y_pred_reg-real_out[ind_test,]))
+    print(0)
     lr = linear_model.Ridge(alpha =0)
     lr.fit(np.concatenate((feat_train,year_train),axis=1),Y_train)
     Y_pred_reg = lr.predict(np.concatenate((feat_test,year_test),axis=1))
-    print lr.coef_.shape
-    print lr.coef_ 
-    print lr.intercept_
+    print(lr.coef_.shape)
+    print(lr.coef_) 
+    print(lr.intercept_)
 
-    print "The RMSE of ridge regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2))
-    print "Mean Error of ridge regression is",np.mean(Y_pred_reg-real_out[ind_test,])
+    print("The RMSE of ridge regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2)))
+    print("Mean Error of ridge regression is",np.mean(Y_pred_reg-real_out[ind_test,]))
 
     # print 'linear regression'
     # lr = linear_model.LinearRegression()
@@ -117,8 +117,8 @@ def Ridge(year,path):
     # print lr.coef_ 
     # print lr.intercept_
 
-    print "The RMSE of linear regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2))
-    print "Mean Error of linear regression is",np.mean(Y_pred_reg-real_out[ind_test,])
+    print("The RMSE of linear regression is", np.sqrt(np.mean((Y_pred_reg-real_out[ind_test,])**2)))
+    print("Mean Error of linear regression is",np.mean(Y_pred_reg-real_out[ind_test,]))
 
 
 def GaussianProcess(year,path):
@@ -148,21 +148,21 @@ def GaussianProcess(year,path):
         W = npzfile['weight_out']
         b = npzfile['b_out']
         W = np.concatenate((W,b))
-        print bias
+        print(bias)
         '''2 divide dataset'''
 
         # get train, validate, test index
         c1 = year_out==year_current-1
         # c2 = (index_out[:,0]==5)+(index_out[:,0]==17)+(index_out[:,0]==18)+(index_out[:,0]==19)+(index_out[:,0]==20)+(index_out[:,0]==27)+(index_out[:,0]==29)+(index_out[:,0]==31)+(index_out[:,0]==38)+(index_out[:,0]==39)+(index_out[:,0]==46)
         ind_test = np.where(c1)[0]
-        print 'shape of test set',ind_test.shape
+        print('shape of test set',ind_test.shape)
 
         c3 = year_out<year_current-1
         c4 = year_out>year_current-bias
         # c5 = year_out!=2012
         # c3 = year_out==year_current-1
         ind_train = np.where(c3*c4)[0]
-        print 'shape of train set',ind_train.shape
+        print('shape of train set',ind_train.shape)
         index_reg = np.where(year_out!=2016)[0]
 
         '''4 normalize all features'''
@@ -252,8 +252,8 @@ def GaussianProcess(year,path):
         '''CNN baseline'''
         # print "The RMSE of CNN model is", np.sqrt(np.mean((real_out[ind_test,0]-pred_out[ind_test])**2))
         '''CNN weight regression'''
-        print "The RMSE of regression, using CNN weight", np.sqrt(np.mean((real_out[ind_test,]-(np.dot(feat_test,W)))**2))
-        print "Mean Error of CNN is",np.mean(pred_out[ind_test]-real_out[ind_test,0])
+        print("The RMSE of regression, using CNN weight", np.sqrt(np.mean((real_out[ind_test,]-(np.dot(feat_test,W)))**2)))
+        print("Mean Error of CNN is",np.mean(pred_out[ind_test]-real_out[ind_test,0]))
         # print "Average prediction of CNN is", np.mean(pred_out[ind_test])
 
 
@@ -287,7 +287,7 @@ def GaussianProcess(year,path):
         b = W
         B = np.identity(X_train.shape[1])
 
-        print l_s,l_t,noise,const
+        print(l_s,l_t,noise,const)
         B /= const # B is diag, inverse is simplified
         K_inv = np.linalg.inv(kernel_mat_3[0:n1,0:n1])
         beta = np.linalg.inv(B+X_train.T.dot(K_inv).dot(X_train)).dot(
@@ -298,15 +298,15 @@ def GaussianProcess(year,path):
         RMSE_GP=np.sqrt(np.mean((Y_pred_3-real_out[ind_test,].reshape(Y_pred_3.shape))**2))
         ME_GP=np.mean(Y_pred_3[:,0]-real_out[ind_test,0])
         Average_GP=np.mean(Y_pred_3[:,0])
-        print "The RMSE of GP model is", RMSE_GP
-        print "Mean Error of GP model is",ME_GP
+        print("The RMSE of GP model is", RMSE_GP)
+        print("Mean Error of GP model is",ME_GP)
         # print "Average prediction of GP is",Average_GP
 
         '''If there is no bias'''
-        print "if there is no bias, the RMSE is"
-        print "CNN",np.sqrt(np.mean((real_out[ind_test,0]-pred_out[ind_test]+np.mean(pred_out[ind_test]-real_out[ind_test,0]))**2))
-        print "GP",np.sqrt(np.mean((Y_pred_3-real_out[ind_test,].reshape(Y_pred_3.shape)-np.mean(Y_pred_3[:,0]-real_out[ind_test,0]))**2))
-        print "end"
+        print("if there is no bias, the RMSE is")
+        print("CNN",np.sqrt(np.mean((real_out[ind_test,0]-pred_out[ind_test]+np.mean(pred_out[ind_test]-real_out[ind_test,0]))**2)))
+        print("GP",np.sqrt(np.mean((Y_pred_3-real_out[ind_test,].reshape(Y_pred_3.shape)-np.mean(Y_pred_3[:,0]-real_out[ind_test,0]))**2)))
+        print("end")
     return (RMSE_GP,ME_GP)
 
         # '''3 weighted sum'''

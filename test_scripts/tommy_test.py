@@ -2,14 +2,17 @@
 import numpy as np
 import os
 
-# SET path directory to the repo base
-os.chdir(os.path.abspath(
-  os.path.join(
-    os.path.dirname( __file__ ),'..'
+def set_base_dir():
+    """ SET path directory to the repo base """
+    os.chdir(os.path.abspath(
+      os.path.join(
+        os.path.dirname( __file__ ),'..'
+        )
+      )
     )
-  )
-)
-print("Working from dir:", os.getcwd())
+    print(("Working from dir:", os.getcwd()))
+
+    return
 
 result = np.load('6 result_analysis/paper_result.npy')
 corr = np.load('6 result_analysis/corr.npy')

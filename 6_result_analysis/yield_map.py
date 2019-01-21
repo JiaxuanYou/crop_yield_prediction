@@ -27,8 +27,8 @@ err_CNN = pred-real
 rmse,me,err_GP = GaussianProcess(2014,path_current)
 
 
-print 'CNN',err_CNN.min(),err_CNN.max()
-print 'GP',err_GP.min(),err_GP.max()
+print('CNN',err_CNN.min(),err_CNN.max())
+print('GP',err_GP.min(),err_GP.max())
 
 for i in range(year.shape[0]):
     loc1 = str(int(index[i,0]))

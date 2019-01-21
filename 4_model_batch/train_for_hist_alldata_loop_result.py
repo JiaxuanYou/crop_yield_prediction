@@ -54,15 +54,15 @@ if __name__ == "__main__":
         index_train = np.nonzero(year_all < predict_year)[0]
         index_validate = np.nonzero(year_all == predict_year)[0]
         index_test = np.nonzero(year_all == predict_year)[0]
-        print 'train size',index_train.shape[0]
-        print 'validate size',index_validate.shape[0]
-        print 'test size',index_test.shape[0]
+        print('train size',index_train.shape[0])
+        print('validate size',index_validate.shape[0])
+        print('test size',index_test.shape[0])
 
         # calc train image mean (for each band), and then detract (broadcast)
         image_mean=np.mean(image_all[index_train],(0,1,2))
         image_all = image_all - image_mean
         year_mean = np.mean(year_all)
-        print 'year_mean',year_mean
+        print('year_mean',year_mean)
 
         image_validate=image_all[index_validate]
         yield_validate=yield_all[index_validate]
@@ -77,7 +77,7 @@ if __name__ == "__main__":
             for time in  range(10,31,4):
                 g = tf.Graph()
                 with g.as_default():
-                    print 'year',predict_year,'loop',loop,'time',time
+                    print('year',predict_year,'loop',loop,'time',time)
                     # modify config
                     config = Config()
                     config.H=time
@@ -119,7 +119,7 @@ if __name__ == "__main__":
                     RMSE_test_all.append(RMSE_test)
                     ME_test_all.append(ME_test)
 
-                    print 'Test set','RMSE',RMSE_test,'ME',ME_test
+                    print('Test set','RMSE',RMSE_test,'ME',ME_test)
 
                     # do validation
                     pred = []
@@ -140,7 +140,7 @@ if __name__ == "__main__":
                     ME_val=np.mean(pred-real)/np.mean(real)*100
                     RMSE_val_all.append(RMSE_val)
                     ME_val_all.append(ME_val)
-                    print 'Validation set','RMSE',RMSE_val,'ME',ME_val
+                    print('Validation set','RMSE',RMSE_val,'ME',ME_val)
 
                     # save result
                     pred_out = []
@@ -185,25 +185,25 @@ if __name__ == "__main__":
                         pred_out=pred_out,real_out=real_out,feature_out=feature_out,
                         year_out=year_out,locations_out=locations_out,weight_out=weight_out,b_out=b_out,index_out=index_out)
                     RMSE_GP,ME_GP,Average_GP=GaussianProcess(predict_year,path)
-                    print 'RMSE_GP',RMSE_GP
-                    print 'ME_GP',ME_GP
-                    print 'Average_GP',Average_GP
+                    print('RMSE_GP',RMSE_GP)
+                    print('ME_GP',ME_GP)
+                    print('Average_GP',Average_GP)
 
             ME_test_mean+=np.absolute(np.array(ME_test_all))
             ME_val_mean+=np.absolute(np.array(ME_val_all))
             count += 1
-            print count
-    print 'theoretical count', 32
+            print(count)
+    print('theoretical count', 32)
     ME_test_mean/=count
     ME_val_mean/=count
 
-    plt.plot(range(len(ME_val_mean)),ME_val_mean)
-    plt.plot(range(len(ME_test_mean)),ME_test_mean)
+    plt.plot(list(range(len(ME_val_mean))),ME_val_mean)
+    plt.plot(list(range(len(ME_test_mean))),ME_test_mean)
     plt.legend(['val','test'])
     plt.show()
 
     # plt.bar(range(len(ME_val_mean)),ME_val_mean)
-    plt.bar(range(len(ME_test_mean)),ME_test_mean)
+    plt.bar(list(range(len(ME_test_mean))),ME_test_mean)
     # plt.legend(['val','test'])
     plt.show()
 

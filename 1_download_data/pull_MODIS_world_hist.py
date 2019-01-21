@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import itertools
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 ee.Initialize()
 
@@ -36,7 +36,7 @@ for country,index in locations.values:
     # filter for a county
     region = world_region.filterMetadata('Country', 'equals', country)
     if region==None:
-        print country,index,'not found'
+        print(country,index,'not found')
         continue
     region = region.first()
     # region = region.geometry().coordinates().getInfo()[0]
@@ -45,4 +45,4 @@ for country,index in locations.values:
     hist = ee.Feature(None, {'mean': img_temp.reduceRegion(ee.Reducer.fixedHistogram(1,4999,32), region, scale, crs,None,False,1e12,16)})
 
     hist_info = hist.getInfo()['features']
-    print hist_info
+    print(hist_info)

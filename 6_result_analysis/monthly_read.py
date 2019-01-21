@@ -31,9 +31,9 @@ for loop in range(0,1):
 
 
 
-	plt.plot(range(6),RMSE_all)
+	plt.plot(list(range(6)),RMSE_all)
 	plt.title(str(predict_year))
 	plt.show()
-	plt.plot(range(6),ME_all)
+	plt.plot(list(range(6)),ME_all)
 	plt.title(str(predict_year))
 	plt.show()

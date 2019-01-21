@@ -28,8 +28,8 @@ def yield_map(path_load,path_save,predict_year,flag):
     elif flag=='pred':
         err_CNN = pred
 
-    print 'CNN',err_CNN.min(),err_CNN.max()
-    print 'RMSE',np.sqrt(np.mean((pred-real)**2))
+    print('CNN',err_CNN.min(),err_CNN.max())
+    print('RMSE',np.sqrt(np.mean((pred-real)**2)))
 
     for i in range(year.shape[0]):
         loc1 = str(int(index[i,0]))
@@ -145,7 +145,7 @@ def yield_map_raw(real,index,path_save,predict_year):
     CNN = {}
     err_CNN = real
 
-    print 'CNN',err_CNN.min(),err_CNN.max()
+    print('CNN',err_CNN.min(),err_CNN.max())
 
 
 
@@ -303,11 +303,11 @@ if __name__ == "__main__":
             path_load = path+str(2)+str(day)+str(predict_year)+'result_prediction.npz'
             path_save = path+'map_real/'+str(0)+str(predict_year)+str(day)+'real.svg'
             yield_map(path_load, path_save, predict_year,'real')
-            print predict_year,day
+            print(predict_year,day)
 
             # print CNN figure
             path_load = path+str(2)+str(day)+str(predict_year)+'result_prediction.npz'
             path_save = path+'map_pred/'+str(0)+str(predict_year)+str(day)+'pred.svg'
             yield_map(path_load, path_save, predict_year,'pred')
-            print predict_year,day
+            print(predict_year,day)
 

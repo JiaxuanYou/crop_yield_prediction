@@ -41,8 +41,8 @@ def load_data(filename,config):
     index_train = np.nonzero(year_all < predict_year)[0]
     index_validate = np.nonzero(year_all == predict_year)[0]
     index_train_validate = np.nonzero(year_all <= predict_year)[0]
-    print 'train size',index_train.shape[0]
-    print 'validate size',index_validate.shape[0]
+    print('train size',index_train.shape[0])
+    print('validate size',index_validate.shape[0])
 
     # calc train image mean (for each band), and then detract (broadcast)
     image_mean=np.mean(image_all[index_train],(0,1,2))
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     # filename = 'histogram_all_soilweather' + '.npz'
     time1 = time.time()
     image_all,yield_all,year_all,locations_all,index_all,index_train,index_validate,_ = load_data(filename, config)
-    print("load time: %ss" % (time.time() - time1))
+    print(("load time: %ss" % (time.time() - time1)))
     image_validate=image_all[index_validate]
     yield_validate=yield_all[index_validate]
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         # summary_ME = npzfile['summary_ME'].tolist()
         print("Model restored.")
     except:
-        print 'No history model found'
+        print('No history model found')
     # #########################
     
     RMSE_min = 100
@@ -154,9 +154,9 @@ if __name__ == "__main__":
                     model.keep_prob:1
                 })
 
-                print 'predict year'+str(predict_year)+'step'+str(i),config.lr
-                print t_L,t_C,t_U,t_R,t_loss,np.mean(t_pred),np.mean(t_real),np.mean(t_pred-t_real),t_err
-                print v_L,v_C,v_U,v_R,v_loss,np.mean(v_pred),np.mean(v_real),np.mean(v_pred-v_real),v_err
+                print('predict year'+str(predict_year)+'step'+str(i),config.lr)
+                print(t_L,t_C,t_U,t_R,t_loss,np.mean(t_pred),np.mean(t_real),np.mean(t_pred-t_real),t_err)
+                print(v_L,v_C,v_U,v_R,v_loss,np.mean(v_pred),np.mean(v_real),np.mean(v_pred-v_real),v_err)
                 # logging.info('predict year %d step %d %f %f %f' % predict_year,i,train_loss,val_loss,config.lr)
                 # logging.info('predict year %d step %d lr %d' % predict_year,i,config.lr)
                 # logging.info('%d %d %d %d %d %d %d %d %d' % t_L,t_C,t_U,t_R,t_loss,np.mean(t_pred),np.mean(t_real),np.mean(t_pred-t_real),t_err)
@@ -188,7 +188,7 @@ if __name__ == "__main__":
                 if RMSE<RMSE_min:
                     RMSE_min=RMSE
 
-                print 'Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min
+                print('Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min)
                 # logging.info('Validation set RMSE %f ME %f RMSE_min %f' % RMSE,ME,RMSE_min)
             
                 # summary_train_loss.append(train_loss)
@@ -197,12 +197,12 @@ if __name__ == "__main__":
                 # summary_ME.append(ME)
 
     except KeyboardInterrupt:
-        print 'stopped'
+        print('stopped')
 
     finally:
         # save
         save_path = saver.save(sess, config.save_path + str(predict_year)+'CNN_model.ckpt')
-        print('save in file: %s' % save_path)
+        print(('save in file: %s' % save_path))
         # logging.info('save in file: %s' % save_path)
 
         # save result

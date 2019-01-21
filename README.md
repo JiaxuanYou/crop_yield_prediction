@@ -14,13 +14,26 @@ For more information, please contact Jiaxuan You.
 
 youjiaxuan@gmail.com.
 
-# Notes to myself (tommy)
+***
 
-If want to run using python3 you want to install the environment from requirements_3.txt.
+# Our edits & changes
 
-Otherwise install the environment from requirements.txt.
+We want to run from python3 so we will be using the requirements_3.txt
+
+Should have used the python2 implementation as want to reproduce the results. ARGHHH
 
 ### Do we have to specify our own EE login details?
+
+YES! We want to use the Earth Engine Command Line Interface.
+
+`earthengine authenticate`
+Which will open a browser popup. You should login to your account and then copy the code into the command line interface.
+
+This will add a refresh token to your `~/.config/earthengine/credentials` file.
+
+
+
+
 ### Do we need lots of space on our own Google drive?
 ### How do we pull from the EE - Google Drive - Local machines?
 

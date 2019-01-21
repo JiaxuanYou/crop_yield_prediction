@@ -47,8 +47,8 @@ if __name__ == "__main__":
     # split into train and validate
     index_train = np.nonzero(year_all < predict_year)[0]
     index_validate = np.nonzero(year_all == predict_year)[0]
-    print 'train size',index_train.shape[0]
-    print 'validate size',index_validate.shape[0]
+    print('train size',index_train.shape[0])
+    print('validate size',index_validate.shape[0])
 
     # calc train image mean (for each band), and then detract (broadcast)
     image_mean=np.mean(image_all[index_train],(0,1,2))
@@ -88,7 +88,7 @@ if __name__ == "__main__":
         summary_ME = npzfile['summary_ME'].tolist()
         print("Model restored.")
     except:
-        print 'No history model found'
+        print('No history model found')
     # #########################
     
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
                     model.keep_prob: 1
                 })
 
-                print 'predict year'+str(predict_year)+'step'+str(i),train_loss,val_loss,config.lr
+                print('predict year'+str(predict_year)+'step'+str(i),train_loss,val_loss,config.lr)
                 logging.info('predict year %d step %d %f %f %f',predict_year,i,train_loss,val_loss,config.lr)
             if i%200 == 0:
                 # do validation
@@ -184,7 +184,7 @@ if __name__ == "__main__":
                     #     summary_train_loss=summary_train_loss,summary_eval_loss=summary_eval_loss,
                     #     summary_RMSE=summary_RMSE,summary_ME=summary_RMSE)
 
-                print 'Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min
+                print('Validation set','RMSE',RMSE,'ME',ME,'RMSE_min',RMSE_min)
                 logging.info('Validation set RMSE %f ME %f RMSE_min %f',RMSE,ME,RMSE_min)
             
                 summary_train_loss.append(train_loss)
@@ -195,13 +195,13 @@ if __name__ == "__main__":
 
 
     except KeyboardInterrupt:
-        print 'stopped'
+        print('stopped')
 
     finally:
 
         # save
         save_path = saver.save(sess, config.save_path + str(predict_year)+'CNN_model.ckpt')
-        print('save in file: %s' % save_path)
+        print(('save in file: %s' % save_path))
         logging.info('save in file: %s' % save_path)
 
         # save result
@@ -261,15 +261,15 @@ if __name__ == "__main__":
         summary_ME = npzfile['summary_ME']
 
         # Plot the points using matplotlib
-        plt.plot(range(len(summary_train_loss)), summary_train_loss)
-        plt.plot(range(len(summary_eval_loss)), summary_eval_loss)
+        plt.plot(list(range(len(summary_train_loss))), summary_train_loss)
+        plt.plot(list(range(len(summary_eval_loss))), summary_eval_loss)
         plt.xlabel('Training steps')
         plt.ylabel('L2 loss')
         plt.title('Loss curve')
         plt.legend(['Train', 'Validate'])
         plt.show()
 
-        plt.plot(range(len(summary_RMSE)), summary_RMSE)
+        plt.plot(list(range(len(summary_RMSE))), summary_RMSE)
         # plt.plot(range(len(summary_ME)), summary_ME)
         plt.xlabel('Training steps')
         plt.ylabel('Error')
@@ -278,7 +278,7 @@ if __name__ == "__main__":
         plt.show()
 
         # plt.plot(range(len(summary_RMSE)), summary_RMSE)
-        plt.plot(range(len(summary_ME)), summary_ME)
+        plt.plot(list(range(len(summary_ME))), summary_ME)
         plt.xlabel('Training steps')
         plt.ylabel('Error')
         plt.title('ME')
