@@ -17,13 +17,13 @@ def preprocess_save_data(file):
         f=f_0*f_5000
         f=np.squeeze(np.prod(f,1).nonzero())
 
-        # print image_temp.shape
+        # print( image_temp.shape)
         image_temp=image_temp[f,:]
-        print image_temp.shape
+        print( image_temp.shape)
 
         corr = np.corrcoef(np.transpose(image_temp))
 
-        # print np.absolute(corr)
+        # print( np.absolute(corr))
         # plt.imshow(np.absolute(corr),cmap='Greys_r',interpolation='none')
         # plt.show()
 
@@ -43,12 +43,12 @@ if __name__ == "__main__":
                 except:
                     continue
     except:
-        print 'break'
+        print( 'break')
     np.save('corr.npy', corr)
     corr = np.load('corr.npy')
     fig, ax = plt.subplots()
-    img = plt.imshow(corr/count,cmap='Greys_r',interpolation='none',vmin=0,vmax=1)
+    img = plt.imshow(corr/count, cmap='Greys_r',interpolation='none',vmin=0,vmax=1)
     cbar = fig.colorbar(img, ticks=[0,0.5,1])
     cbar.ax.set_yticklabels(['0','0.5','1'])
     plt.show()
-        
+
