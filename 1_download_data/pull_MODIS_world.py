@@ -68,7 +68,7 @@ for country,index in locations.values:
     scale  = 500
     crs='EPSG:4326'
 
-    # filter for a county
+    # filter for a country
     region = world_region.filterMetadata('Country', 'equals', country)
     if region==None:
         print(country,index,'not found')

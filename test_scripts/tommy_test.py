@@ -22,3 +22,9 @@ compare_result_final = np.load('6 result_analysis/Compare_result_final.npz')
 compare_result_ridge = np.load('6 result_analysis/Compare_result_ridge.npz')
 compare_result = np.load('6 result_analysis/Compare_result.npz')
 
+# read locations file
+df = pd.read_csv('data/locations_final.csv', names=["state_id","county_id","lat","lon"])
+# order by state_id / county_id
+df = df.sort_values(['state_id','county_id'])
+# save to new csv file
+df[df.state_id == 1].to_csv('data/subset_locations.csv', header=False, index=False)

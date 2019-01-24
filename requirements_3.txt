@@ -27,6 +27,7 @@ html5lib==0.9999999
 httplib2==0.12.0
 idna==2.8
 imageio==2.4.1
+ipdb==0.11
 ipython==7.2.0
 ipython-genutils==0.2.0
 jedi==0.13.2

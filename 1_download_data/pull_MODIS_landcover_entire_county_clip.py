@@ -26,8 +26,8 @@ def export_oneimage(img,folder,name,scale,crs):
 
 
 
-locations = pd.read_csv('locations_final.csv')
-
+# locations = pd.read_csv('locations_final.csv')
+locations = pd.read_csv('../data/subset_locations.csv',header=None)
 
 # Transforms an Image Collection with 1 band per Image into a single Image with items as bands
 # Author: Jamie Vleeshouwer
@@ -77,7 +77,7 @@ for loc1, loc2, lat, lon in locations.values:
     #     [lat - offset, lon - offset]])
     while True:
         try:
-            export_oneimage(img.clip(region), 'data_mask', fname, scale, crs)
+            export_oneimage(img.clip(region), 'crop_yield/data_mask', fname, scale, crs)
         except:
             print('retry')
             time.sleep(10)

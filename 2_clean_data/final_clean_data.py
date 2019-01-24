@@ -23,9 +23,9 @@ import multiprocessing
 
 
 def check_data_integrity_del():
-    data = np.genfromtxt('yield_final_highquality.csv', delimiter=',')
+    data = np.genfromtxt('../data/yield_final_highquality.csv', delimiter=',')
     # check if they have related files
-    dir = "/atlas/u/jiaxuan/data/google_drive/img_zoom_output/"
+    dir = "../../DataForcrop_yield_private/img_zoom_output/"
     list_del = []
     for i in range(data.shape[0]):
         year = data[i,0]
@@ -38,13 +38,13 @@ def check_data_integrity_del():
 
     list_del = np.array(list_del)
     data_clean=np.delete(data, list_del, axis=0)
-    np.savetxt("yield_final_highquality.csv", data_clean, delimiter=",")
+    np.savetxt("../data/yield_final_highquality.csv", data_clean, delimiter=",")
 
 def check_data_integrity():
     print('begin')
-    data = np.genfromtxt('yield_final_highquality.csv', delimiter=',')
+    data = np.genfromtxt('../data/yield_final_highquality.csv', delimiter=',')
     # check if they have related files
-    dir = "/atlas/u/jiaxuan/data/google_drive/img_output/"
+    dir = "../../DataForcrop_yield_private/img_output/"
     for i in range(data.shape[0]):
         year = data[i,0]
         loc1 = data[i,1]
@@ -89,7 +89,7 @@ def merge_image(MODIS_img_list,MODIS_temperature_img_list):
         img_temperature_shape=MODIS_temperature_img_list[i].shape
         img_shape_new=(img_shape[0],img_shape[1],img_shape[2]+img_temperature_shape[2])
         merge=np.empty(img_shape_new)
-        for j in range(0,img_shape[2]/7):
+        for j in range(0,int(img_shape[2]/7)):
             img=MODIS_img_list[i][:,:,(j*7):(j*7+7)]
             temperature=MODIS_temperature_img_list[i][:,:,(j*2):(j*2+2)]
             merge[:,:,(j*9):(j*9+9)]=np.concatenate((img,temperature),axis=2)
@@ -113,11 +113,11 @@ def quality_dector(image_temp):
 
 def preprocess_save_data():
 
-    MODIS_dir="/atlas/u/jiaxuan/data/google_drive/data_image"
-    MODIS_temperature_dir="/atlas/u/jiaxuan/data/google_drive/data_temperature"
-    MODIS_mask_dir="/atlas/u/jiaxuan/data/google_drive/data_mask"
+    MODIS_dir="../../DataForcrop_yield_private/crop_yield_Data"
+    MODIS_temperature_dir="../../DataForcrop_yield_private/crop_yield_data_temperature"
+    MODIS_mask_dir="../../DataForcrop_yield_private/crop_yield_Data_mask"
 
-    img_output_dir="/atlas/u/jiaxuan/data/google_drive/img_output/"
+    img_output_dir="../../DataForcrop_yield_private/img_output/"
 
     # MODIS_processed_dir="C:/360Downloads/6_Data_county_processed_scaled/"
 
@@ -126,7 +126,7 @@ def preprocess_save_data():
     # MODIS_mask_dir="/atlas/u/jiaxuan/data/MODIS_data_county_mask"
     # MODIS_processed_dir="/atlas/u/jiaxuan/data/MODIS_data_county_processed_compressed/"
 
-    data_yield = np.genfromtxt('yield_final.csv', delimiter=',', dtype=float)
+    data_yield = np.genfromtxt('../data/yield_final.csv', delimiter=',', dtype=float)
     count=1
     for root, dirs, files in os.walk(MODIS_dir):
         for file in files:
@@ -190,12 +190,12 @@ def preprocess_save_data():
 
 def preprocess_save_data_parallel(file):
 
-    MODIS_dir="/atlas/u/jiaxuan/data/google_drive/data_image_full"
-    MODIS_temperature_dir="/atlas/u/jiaxuan/data/google_drive/data_temperature"
-    MODIS_mask_dir="/atlas/u/jiaxuan/data/google_drive/data_mask"
+    MODIS_dir="../../DataForcrop_yield_private/crop_yield_Data"
+    MODIS_temperature_dir="../../DataForcrop_yield_private/crop_yield_data_temperature"
+    MODIS_mask_dir="../../DataForcrop_yield_private/crop_yield_Data_mask"
 
-    img_output_dir="/atlas/u/jiaxuan/data/google_drive/img_full_output/"
-    img_zoom_output_dir="/atlas/u/jiaxuan/data/google_drive/img_zoom_full_output/"
+    img_output_dir="../../DataForcrop_yield_private/img_full_output/"
+    img_zoom_output_dir="../../DataForcrop_yield_private/img_zoom_full_output/"
 
     # MODIS_processed_dir="C:/360Downloads/6_Data_county_processed_scaled/"
 
@@ -204,7 +204,7 @@ def preprocess_save_data_parallel(file):
     # MODIS_mask_dir="/atlas/u/jiaxuan/data/MODIS_data_county_mask"
     # MODIS_processed_dir="/atlas/u/jiaxuan/data/MODIS_data_county_processed_compressed/"
 
-    data_yield = np.genfromtxt('yield_final.csv', delimiter=',', dtype=float)
+    data_yield = np.genfromtxt('../data/yield_final.csv', delimiter=',', dtype=float)
     if file.endswith(".tif"):
         MODIS_path=os.path.join(MODIS_dir, file)
         # check file size to see if it's broken
@@ -290,9 +290,12 @@ def preprocess_save_data_parallel(file):
 
 if __name__ == "__main__":
     # # save data
-    MODIS_dir="/atlas/u/jiaxuan/data/google_drive/data_image_full"
+    MODIS_dir="../../DataForcrop_yield_private/crop_yield_Data"
     for _, _, files in os.walk(MODIS_dir):
-        Parallel(n_jobs=12)(delayed(preprocess_save_data_parallel)(file) for file in files)
+        # Parallel(n_jobs=8)(delayed(preprocess_save_data_parallel)(file) for file in files)
+        for file in files:
+            print(file)
+            preprocess_save_data_parallel(file)
 
     # # clean yield (low quality)
     # check_data_integrity_del()

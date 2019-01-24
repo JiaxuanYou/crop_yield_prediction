@@ -1,6 +1,7 @@
 from nnet_for_hist_dropout_stride import *
 from GP_crop_v3 import *
 import logging
+import numpy as np
 
 
 
